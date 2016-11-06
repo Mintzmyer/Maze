@@ -47,6 +47,7 @@ void Grid::PrintMaze()
 {
 	
     Grid printGame = Grid(M+1); 	// Function for activating outer walls and top row of tiles
+
     //Loop tiles
     for(int i = 0; i < M*M; i++)
     {
