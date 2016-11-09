@@ -28,7 +28,7 @@ class Grid
 {
  
     public:
-	Tile Tiles[M*M];    // Array of Tiles
+	Tile Tiles[(M+1)*(M+1)];    // Array of Tiles
 	Grid(int N);         // Function for activating outer walls and top row of tiles
 	void genMaze();	//Function for traversing it, building maze
 	void PrintMaze();     // Fn for printing Grid ‾_|‾|_| 	
@@ -44,35 +44,60 @@ class Grid
 };
 
 void Grid::PrintMaze()
-{
-	
-    Grid printGame = Grid(M+1); 	// Function for activating outer walls and top row of tiles
+{	
+
+    Grid printGame = 0; // Grid bools for <^>v middle walls: ╶╵╴╷
+    int uplt = 0;
+    int uprt = 0;	
+    int dnlt = 0;
+    int dnrt = 0;
 
     //Loop tiles
     for(int i = 0; i < M*M; i++)
     {
-	int sum = (8*this->Tiles[i].Walls[1])+(4*this->Tiles[i].Walls[2])+(2*this->Tiles[i].Walls[3])+(this->Tiles[i].Walls[4]);
-	if(sum == 0) std::cout << "  ";
-	if(sum == 1) std::cout << "__";
-	if(sum == 2) std::cout << "[ "; 
-	if(sum == 3) std::cout << "_]";
-			      
-	if(sum == 4) std::cout << "‾‾"; 
-	if(sum == 5) std::cout << "ΞΞ"; 
-	if(sum == 6) std::cout << "[‾"; 
-	if(sum == 7) std::cout << "[Ξ"; 
-			      
-	if(sum == 8) std::cout << "[ "; 
-	if(sum == 9) std::cout << "[_"; 
-	if(sum == 10) std::cout << "||"; 
-	if(sum == 11) std::cout << "⎿⏌";
-			      
-	if(sum == 12) std::cout << "[‾"; 
+	uplt = (i%M) + (i/M)*(M+1);
+	uprt = (i%M)+1 + (i/M)*(M+1);
+	dnlt = (i%M) + ((i/M)+1)*(M+1);
+	dnrt = (i%M)+1 + ((i/M)+1)*(M+1);
 
-	if(sum == 13) std::cout << "[Ξ"; 
-	if(sum == 14) std::cout << "⎾⏋"; 
-	if(sum == 15) std::cout << "[]";
-	if( (i+1)%M == 0) std::cout << "\n";
+	    
+	if(this->Tiles[i].Walls[4]){ //std::cout << "__";
+	    printGame.Tiles[dnlt].Walls[3] = true;  // Turn on bottom left
+	    printGame.Tiles[dnrt].Walls[1] = true; // Turn on bottom right
+	}
+	if(this->Tiles[i].Walls[3]){ //std::cout << " ]"; 
+	    printGame.Tiles[uprt].Walls[4] = true; // Turn on top right
+	    printGame.Tiles[dnrt].Walls[2] = true; // Turn on bottom right
+	}	      
+	if(this->Tiles[i].Walls[2]){ //std::cout << "‾‾"; 
+	    printGame.Tiles[uplt].Walls[3] = true; // Turn on top left
+	    printGame.Tiles[uprt].Walls[1] = true; // Turn on top right
+	}
+	if(this->Tiles[i].Walls[1]){ //std::cout << "[ "; 
+	    printGame.Tiles[uplt].Walls[4] = true; // Turn on top left
+	    printGame.Tiles[dnlt].Walls[2] = true; // Turn on bottom left
+	}
+    }
+    for(int j = 0; j < (M+1)*(M+1); j++)	
+    {
+	if (j%(M+1) == 0) std::cout << "\n";
+	int sum = (8*printGame.Tiles[j].Walls[1])+(4*printGame.Tiles[j].Walls[2])+(2*printGame.Tiles[j].Walls[3])+(printGame.Tiles[j].Walls[4]);
+    	if (sum == 0) std::cout << " ";
+    	if (sum == 1) std::cout << "╷";
+    	if (sum == 2) std::cout << "╶";
+    	if (sum == 3) std::cout << "┌";
+    	if (sum == 4) std::cout << "╵";
+    	if (sum == 5) std::cout << "│";
+    	if (sum == 6) std::cout << "└";
+    	if (sum == 7) std::cout << "├";
+    	if (sum == 8) std::cout << "╴";
+    	if (sum == 9) std::cout << "┐";
+    	if (sum == 10) std::cout << "─";
+    	if (sum == 11) std::cout << "┬";
+    	if (sum == 12) std::cout << "┘";
+    	if (sum == 13) std::cout << "┤";
+    	if (sum == 14) std::cout << "┴";
+    	if (sum == 15) std::cout << "┼";
     }
     std::cout<< "\n";
 }
@@ -81,9 +106,7 @@ void Grid::PrintMaze()
 
 Grid::Grid(int N)
 {
-	std::cout << "Setting Grid\n";
-//	Tile Squares[N*N];
-//	Tiles = Squares;
+//	std::cout << "Setting Grid\n";
 	for(int x = 0; x < N; x++)
 	{
 		for(int y = 0; y < N; y++)
@@ -107,6 +130,7 @@ Grid::Grid(int N)
 			}
 		}
 	}
+	this->PrintMaze();	
 //	this->genMaze();
 }
 int Grid::Up(int Pos) 		//Returns M*M if impossible or array pos result of move
@@ -138,9 +162,10 @@ bool Grid::Blocked(int Pos) 	//Returns True if Pos has any directions it can mov
 {
 	return (this->Up(Pos)+this->Down(Pos)+this->Left(Pos)+this->Right(Pos) == 4*M*M);
 }
+
 int Grid::walkDir(int Pos)
 {
-	std::cout << "Getting walkDir\n";
+//	std::cout << "Getting walkDir\n";
 	if (this->Blocked(Pos)) return M*M;
 	
 	int res = M*M;
@@ -177,13 +202,13 @@ int Grid::startWalk()
 	    Pos = (Pos+M+1)%(M*M); // zip to closest block.
 		
 	}
-	std::cout << "Probably full\n";
+//	std::cout << "Probably full\n";
 	return M*M;
 }
 
 void Grid::Move(int Pos, int Next)
 {
-	std::cout << "Moving!\n";
+//	std::cout << "Moving!\n";
 	this->Tiles[Pos].Walls[0]=true;
 	this->Tiles[Next].Walls[0]=true;
 
@@ -221,7 +246,7 @@ void Grid::genMaze()
 {
 	
 	this->Tiles[0].Walls[0]=true;
-	std::cout << "In genMaze!\n";
+//	std::cout << "In genMaze!\n";
 	int Pos, Next;
 	bool full = false;
 	
@@ -229,10 +254,10 @@ void Grid::genMaze()
 	{
 		Pos=this->startWalk();
 		this->Tiles[Pos].Walls[0]=true;
-		std::cout << "Pos: " << Pos << "\n";
+//		std::cout << "Pos: " << Pos << "\n";
 		if(Pos==M*M)
 		{
-			std::cout << "\n\nFINISHED\n\n";
+//			std::cout << "\n\nFINISHED\n\n";
 			full = true;
 		}
 		while(!this->Blocked(Pos)&&(Pos>M))
@@ -240,14 +265,14 @@ void Grid::genMaze()
 //			std::cout << Pos << "\n";	
 			Next = this->walkDir(Pos);
 			this->Move(Pos, Next);
-			std::cout << "Pos: " << Pos << " Next: " << Next << std::endl;
+//			std::cout << "Pos: " << Pos << " Next: " << Next << std::endl;
 			Pos = Next;
 		}
 		for (int j = 0; j < M*M; j++)
 		{
 //			if(this->Tiles[j].Walls[0]==false) std::cout << " " << j << ", U:" << this->Up(j) << ", D:" << this->Down(j) << ", L:" << this->Left(j) << ", R:" << this->Right(j) << ", B:" << this->Blocked(j);
 			if(this->Blocked(j)==false) std::cout << " " << j;			
-		} std::cout << " So far \n";
+		} //std::cout << " So far \n";
 	}
 }
 
