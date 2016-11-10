@@ -1,6 +1,5 @@
-#include <iostream>
-#include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <time.h>
 
 #define M 20
@@ -28,8 +27,9 @@ class Grid
 {
  
     public:
-	Tile Tiles[(M+1)*(M+1)];    // Array of Tiles
-	Grid(int N);         // Function for activating outer walls and top row of tiles
+	Tile * Tiles;    // Array of Tiles
+	Grid(int N);         // Initializes tiles array
+	void Boundaries(int N); // Sets up outer walls and top row of tiles
 	void genMaze();	//Function for traversing it, building maze
 	void PrintMaze();     // Fn for printing Grid ‾_|‾|_| 	
     protected:
@@ -37,7 +37,7 @@ class Grid
 	int Down(int Pos);		//Returns M*M if impossible or array pos result of move
 	int Left(int Pos);		//Returns M*M if impossible or array pos result of move
 	int Right(int Pos);        //Returns M*M if impossible or array pos result of move
-	bool Blocked(int Pos); 	//Returns True if Pos has any directions it can move
+	bool Blocked(int Pos); 	//Returns True if Pos has no directions it can move
 	int walkDir(int Pos);
 	int startWalk();
 	void Move(int Pos, int Next);
@@ -46,7 +46,7 @@ class Grid
 void Grid::PrintMaze()
 {	
 
-    Grid printGame = 0; // Grid bools for <^>v middle walls: ╶╵╴╷
+    Grid printGame = Grid(M+1); // Grid bools for <^>v middle walls: ╶╵╴╷
     int uplt = 0;
     int uprt = 0;	
     int dnlt = 0;
@@ -82,7 +82,7 @@ void Grid::PrintMaze()
     {
 	if (j%(M+1) == 0) std::cout << "\n";
 	int sum = (8*printGame.Tiles[j].Walls[1])+(4*printGame.Tiles[j].Walls[2])+(2*printGame.Tiles[j].Walls[3])+(printGame.Tiles[j].Walls[4]);
-    	if (sum == 0) std::cout << " ";
+    	if (sum == 0) std::cout << ".";
     	if (sum == 1) std::cout << "╷";
     	if (sum == 2) std::cout << "╶";
     	if (sum == 3) std::cout << "┌";
@@ -102,33 +102,36 @@ void Grid::PrintMaze()
     std::cout<< "\n";
 }
 
-
-
 Grid::Grid(int N)
 {
-//	std::cout << "Setting Grid\n";
-	for(int x = 0; x < N; x++)
+	// Construct NXN array of tiles, +1 for null operator \0
+	this->Tiles = new Tile[(N*N)+1];
+	// Initialize tiles to false
+	for (int i = 0; i <= N*N; i++)
 	{
-		for(int y = 0; y < N; y++)
-		{
-			if(x == 0)
-			{
-				Tiles[(N*y)+x].Walls[1] = true;
-			} //  *(Tiles+(N*y)+x)
-			if(x == N-1)
-			{
-				Tiles[(N*y)+x].Walls[3] = true;
-			}
-			if(y == 0)
-			{
-				Tiles[(N*y)+x].Walls[4] = true;
-			}
-			if(y == N-1)
-			{
-				Tiles[(N*y)+x].Walls[0] = true;
-				Tiles[(N*y)+x].Walls[2] = true;
-			}
-		}
+		this->Tiles[i] = Tile();
+
+	}
+}
+
+void Grid::Boundaries(int N)
+{
+//	std::cout << "Setting Grid\n";
+	for(int i = 0; i < N*N; i++)
+	{
+	    if (i%N == 0){
+		Tiles[i].Walls[1] = true;
+	    }
+	    if (i%N == N-1){
+		Tiles[i].Walls[3] = true;
+	    }
+	    if (i/N == 0){
+		Tiles[i].Walls[2] = true;
+	    }
+	    if (i/N == N-1){
+		Tiles[i].Walls[4] = true;
+		Tiles[i].Walls[0] = true;
+	    }
 	}
 	this->PrintMaze();	
 //	this->genMaze();
@@ -158,14 +161,13 @@ int Grid::Right(int Pos)        //Returns M*M if impossible or array pos result 
 	if(Tiles[Pos+1].Walls[0] != false) return M*M;
 	return Pos+1;
 }
-bool Grid::Blocked(int Pos) 	//Returns True if Pos has any directions it can move
+bool Grid::Blocked(int Pos) 	//Returns True if Pos has no directions it can move
 {
 	return (this->Up(Pos)+this->Down(Pos)+this->Left(Pos)+this->Right(Pos) == 4*M*M);
 }
 
 int Grid::walkDir(int Pos)
 {
-//	std::cout << "Getting walkDir\n";
 	if (this->Blocked(Pos)) return M*M;
 	
 	int res = M*M;
@@ -185,12 +187,10 @@ int Grid::walkDir(int Pos)
 }
 int Grid::startWalk()
 {
-//	std::cout << "In startWalk\n";
 	int Full = 0;
 	int Pos = M*M;
 	
 	Pos = rand()%(M*M);
-//	std::cout << "In startwalk. Pos: " << Pos;
 
 //	Pos = (M*M-(M/2));
 	for (int i = 0; i < M*M; i++)
@@ -202,13 +202,11 @@ int Grid::startWalk()
 	    Pos = (Pos+M+1)%(M*M); // zip to closest block.
 		
 	}
-//	std::cout << "Probably full\n";
 	return M*M;
 }
 
 void Grid::Move(int Pos, int Next)
 {
-//	std::cout << "Moving!\n";
 	this->Tiles[Pos].Walls[0]=true;
 	this->Tiles[Next].Walls[0]=true;
 
@@ -246,7 +244,6 @@ void Grid::genMaze()
 {
 	
 	this->Tiles[0].Walls[0]=true;
-//	std::cout << "In genMaze!\n";
 	int Pos, Next;
 	bool full = false;
 	
@@ -254,24 +251,19 @@ void Grid::genMaze()
 	{
 		Pos=this->startWalk();
 		this->Tiles[Pos].Walls[0]=true;
-//		std::cout << "Pos: " << Pos << "\n";
 		if(Pos==M*M)
 		{
-//			std::cout << "\n\nFINISHED\n\n";
 			full = true;
 		}
 		while(!this->Blocked(Pos)&&(Pos>M))
 		{
-//			std::cout << Pos << "\n";	
 			Next = this->walkDir(Pos);
 			this->Move(Pos, Next);
-//			std::cout << "Pos: " << Pos << " Next: " << Next << std::endl;
 			Pos = Next;
 		}
 		for (int j = 0; j < M*M; j++)
 		{
-//			if(this->Tiles[j].Walls[0]==false) std::cout << " " << j << ", U:" << this->Up(j) << ", D:" << this->Down(j) << ", L:" << this->Left(j) << ", R:" << this->Right(j) << ", B:" << this->Blocked(j);
-			if(this->Blocked(j)==false) std::cout << " " << j;			
+//			if(this->Blocked(j)==false) std::cout << " " << j;	
 		} //std::cout << " So far \n";
 	}
 }
@@ -281,9 +273,12 @@ int main()
 	srand(time(NULL));
 	std::cout<<"Main Gen Game\n";
 	Grid Game1 = Grid(M); 	// Function for activating outer walls and top row of tiles
-//	std::cout << "Main Gen Maze\n";
+	Game1.PrintMaze();
+	Game1.Boundaries(M);
+	std::cout << "Main Gen Maze\n";
 	Game1.genMaze();		//Function for traversing it, building maze
-	std::cout << "Print Maze\n";
-	Game1.PrintMaze();      	// Fn for printing Grid ‾_|‾|_| 	
+	Game1.PrintMaze();
+//	std::cout << "Print Maze\n";
+//	Game1.PrintMaze();      	// Fn for printing Grid ‾_|‾|_| 	
 }
 
