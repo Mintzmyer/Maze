@@ -48,6 +48,8 @@
 #include <vtkCellArray.h>
 #include "Grid.cxx"
 
+#include "vtkOpenGL.h"
+
 class WASDInteractorStyle : public vtkInteractorStyleFlight
 {
     public:
