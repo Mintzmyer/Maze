@@ -322,12 +322,16 @@ vtkStandardNewMacro(vtk441MapperPart1);
 
 int main()
 {
-//GROD MAIN
+//GRID MAIN
+	int M = 20;
 	srand(time(NULL));
 	std::cout<<"Main Gen Game\n";
 	Grid Game1 = Grid(); 	// Function for activating outer walls and top row of tiles
-	std::cout << "Print Maze\n";
-	Game1.PrintMaze();      	// Fn for printing Grid ‾_|‾|_| 	
+	Grid Game1 = Grid(M); 	// Function for activating outer walls and top row of tiles
+	Game1.Boundaries(M);
+	Game1.genMaze();		//Function for traversing it, building maze
+	
+
 //END GRID MAIN
 	vtkSmartPointer<vtkSphereSource> sphere =
 		vtkSmartPointer<vtkSphereSource>::New();
