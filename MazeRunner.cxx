@@ -323,10 +323,8 @@ vtkStandardNewMacro(vtk441MapperPart1);
 int main()
 {
 //GRID MAIN
-	int M = 20;
 	srand(time(NULL));
 	std::cout<<"Main Gen Game\n";
-	Grid Game1 = Grid(); 	// Function for activating outer walls and top row of tiles
 	Grid Game1 = Grid(M); 	// Function for activating outer walls and top row of tiles
 	Game1.Boundaries(M);
 	Game1.genMaze();		//Function for traversing it, building maze
