@@ -1,20 +1,14 @@
-/*=========================================================================
+/*
+    Program:    Visualization Toolkit
+    Module:     MazeGUI.cxx
 
-  Program:   Visualization Toolkit
-  Module:    SpecularSpheres.cxx
+    This program renders a GUI for the maze generating file Grid.cxx using VTK
+    It was built as a project for CIS 441 at the University of Oregon
 
-  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
-  All rights reserved.
-  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
+    Samantha Mintzmyer
+*/
 
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notice for more information.
 
-=========================================================================*/
-//
-// This examples demonstrates the effect of specular lighting.
-//
 #include "vtkSmartPointer.h"
 #include "vtkSphereSource.h"
 #include "vtkPolyDataMapper.h"
@@ -49,6 +43,15 @@
 #include "Grid.cxx"
 
 #include "vtkOpenGL.h"
+
+
+/****** REMOVED FOR TESTING **************************************************************
+/*
+    class WASDInteractorStyle : public vtkInteractorStyleFlight
+
+    This class extends vtkInteractorStyleFlight
+    It defines OnKeyPress() function that maps movement to the WASD keys
+*/
 
 class WASDInteractorStyle : public vtkInteractorStyleFlight
 {
@@ -144,16 +147,25 @@ class WASDInteractorStyle : public vtkInteractorStyleFlight
 	}
 };
 
+//  Create a new instance of the WASDInteractorStyle class
+
 vtkStandardNewMacro(WASDInteractorStyle);
+********* REMOVED FOR TESTING ************************************************/
 
+/*
+    class vtk441SceneMapper : public vtkOpenGLPolyDataMapper
 
-class vtk441Mapper : public vtkOpenGLPolyDataMapper
+    This class extends vtkOpenGLPolyDataMapper
+    It's responsible for setting up the lighting for the scene
+*/
+
+class vtk441SceneMapper : public vtkOpenGLPolyDataMapper
 {
     protected:
 	GLuint displayList;
 	bool initialized;
     public:
-	vtk441Mapper()
+	vtk441SceneMapper()
 	{
 	    initialized = false;
 	}
@@ -212,10 +224,18 @@ class vtk441Mapper : public vtkOpenGLPolyDataMapper
 	}
 };
 
-class vtk441MapperPart1 : public vtk441Mapper
+
+/*
+    class vtk441MazeMapper : public vtk441SceneMapper
+
+    This class extends vtk441SceneMapper
+    It's responsible for rendering a 4D representation of the maze from Grid.cxx
+*/
+
+class vtk441MazeMapper : public vtk441Mapper
 {
  public:
-   static vtk441MapperPart1 *New();
+   static vtk441MazeMapper *New();
    Grid Game;
 
 
@@ -318,26 +338,35 @@ class vtk441MapperPart1 : public vtk441Mapper
    }
 };
 
-vtkStandardNewMacro(vtk441MapperPart1);
+vtkStandardNewMacro(vtk441MazeMapper);
+
+
+/*
+    This is the main() function of MazeGUI.cxx
+    It calls Grid.cxx to generate a maze
+    It creates a new GUI scene and maze
+    It creates a new Camera and WASD control
+*/
 
 int main()
 {
-//GRID MAIN
+    //  Call to Grid.cxx for new Maze
+
 	srand(time(NULL));
 	std::cout<<"Main Gen Game\n";
 	Grid Game1 = Grid(M); 	// Function for activating outer walls and top row of tiles
 	Game1.Boundaries(M);
 	Game1.genMaze();		//Function for traversing it, building maze
 	
+    //  Create new GUI scene and Maze
 
-//END GRID MAIN
 	vtkSmartPointer<vtkSphereSource> sphere =
 		vtkSmartPointer<vtkSphereSource>::New();
 	sphere->SetThetaResolution(100);
 	sphere->SetPhiResolution(100);
 	
-	vtkSmartPointer<vtk441MapperPart1> win1Mapper =
-	    vtkSmartPointer<vtk441MapperPart1>::New();
+	vtkSmartPointer<vtk441MazeMapper> win1Mapper =
+	    vtkSmartPointer<vtk441MazeMapper>::New();
 	win1Mapper->SetInputConnection(sphere->GetOutputPort());
 	
 	win1Mapper->Game = Game1;
@@ -349,7 +378,8 @@ int main()
 	vtkSmartPointer<vtkRenderer> ren1 =
 	    vtkSmartPointer<vtkRenderer>::New();
 
-	//Sets up camera
+    //  Create a new Camera and WASD control to traverse Maze
+
 	vtkSmartPointer<vtkRenderWindow> renWin =
 	    vtkSmartPointer<vtkRenderWindow>::New();
 	renWin->AddRenderer(ren1);
@@ -377,7 +407,8 @@ int main()
 	ren1->GetActiveCamera()->SetDistance(1);
 	ren1->AddLight(Hlight);
 	ren1->SetLightFollowCamera(1);
-	
+
+/******* REMOVED FOR TESTING *********************************	
 	vtkSmartPointer<WASDInteractorStyle> style =
 		vtkSmartPointer<WASDInteractorStyle>::New();
 	
@@ -391,6 +422,7 @@ int main()
 	((vtkInteractorStyleFlight *)iren->GetInteractorStyle())->SetAutoAdjustCameraClippingRange(0);
 	iren->Initialize();
 	iren->Start();
+******** REMOVED FOR TESTING *********************************/
 
 	return EXIT_SUCCESS;
 }
