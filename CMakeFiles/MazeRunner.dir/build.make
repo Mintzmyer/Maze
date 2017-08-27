@@ -43,10 +43,10 @@ RM = /usr/local/Cellar/cmake/3.7.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/isaacvonneutz/Maze
+CMAKE_SOURCE_DIR = /Users/ifreyja/Maze
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/isaacvonneutz/Maze
+CMAKE_BINARY_DIR = /Users/ifreyja/Maze
 
 # Include any dependencies generated for this target.
 include CMakeFiles/MazeRunner.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/MazeRunner.dir/flags.make
 
 CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o: CMakeFiles/MazeRunner.dir/flags.make
 CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o: MazeRunner.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/isaacvonneutz/Maze/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o -c /Users/isaacvonneutz/Maze/MazeRunner.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ifreyja/Maze/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o -c /Users/ifreyja/Maze/MazeRunner.cxx
 
 CMakeFiles/MazeRunner.dir/MazeRunner.cxx.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MazeRunner.dir/MazeRunner.cxx.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/isaacvonneutz/Maze/MazeRunner.cxx > CMakeFiles/MazeRunner.dir/MazeRunner.cxx.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ifreyja/Maze/MazeRunner.cxx > CMakeFiles/MazeRunner.dir/MazeRunner.cxx.i
 
 CMakeFiles/MazeRunner.dir/MazeRunner.cxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MazeRunner.dir/MazeRunner.cxx.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/isaacvonneutz/Maze/MazeRunner.cxx -o CMakeFiles/MazeRunner.dir/MazeRunner.cxx.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ifreyja/Maze/MazeRunner.cxx -o CMakeFiles/MazeRunner.dir/MazeRunner.cxx.s
 
 CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o.requires:
 
@@ -92,128 +92,131 @@ MazeRunner: CMakeFiles/MazeRunner.dir/MazeRunner.cxx.o
 MazeRunner: CMakeFiles/MazeRunner.dir/build.make
 MazeRunner: /usr/lib/libz.dylib
 MazeRunner: /usr/lib/libexpat.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkDomainsChemistryOpenGL2-7.1.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkDomainsChemistryOpenGL2-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersFlowPaths-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersGeneric-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersHyperTree-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersParallelImaging-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersPoints-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersProgrammable-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersPython-8.0.1.dylib
+MazeRunner: /System/Library/Frameworks/Python.framework/Versions/2.7/Python
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkWrappingPython27Core-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkWrappingTools-8.0.a
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersSMP-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersSelection-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersTexture-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersTopology-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersVerdict-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkverdict-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkGeovisCore-8.0.1.dylib
 MazeRunner: /usr/local/lib/libjpeg.dylib
 MazeRunner: /usr/local/lib/libpng.dylib
 MazeRunner: /usr/local/lib/libtiff.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersFlowPaths-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersGeneric-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersHyperTree-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersParallelImaging-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersPoints-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersProgrammable-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersPython-7.1.1.dylib
-MazeRunner: /System/Library/Frameworks/Python.framework/Versions/2.7/Python
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkWrappingPython27Core-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkWrappingTools-7.1.a
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersSMP-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersSelection-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersTexture-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersVerdict-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkverdict-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkGeovisCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkproj4-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOAMR-7.1.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkproj4-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOAMR-8.0.1.dylib
 MazeRunner: /usr/local/lib/libhdf5.dylib
 MazeRunner: /usr/local/lib/libsz.dylib
 MazeRunner: /usr/lib/libdl.dylib
 MazeRunner: /usr/lib/libm.dylib
 MazeRunner: /usr/local/lib/libhdf5_hl.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOEnSight-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOExodus-7.1.1.dylib
-MazeRunner: /usr/local/lib/libnetcdf_c++.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOEnSight-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOExodus-8.0.1.dylib
 MazeRunner: /usr/local/lib/libnetcdf.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOExport-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingGL2PSOpenGL2-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkgl2ps-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOImport-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOInfovis-7.1.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOExportOpenGL2-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOImport-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOInfovis-8.0.1.dylib
 MazeRunner: /usr/lib/libxml2.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOLSDyna-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOMINC-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOMovie-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkoggtheora-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOPLY-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOParallel-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkjsoncpp-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOParallelXML-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOSQL-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtksqlite-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOTecplotTable-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOVideo-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingMorphological-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingStatistics-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingStencil-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkInfovisBoostGraphAlgorithms-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkInteractionImage-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingContextOpenGL2-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingFreeTypeFontConfig-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingImage-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingLOD-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingVolumeOpenGL2-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkViewsContext2D-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkViewsInfovis-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkDomainsChemistry-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersAMR-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersParallel-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkexoIIc-7.1.1.dylib
-MazeRunner: /usr/local/lib/libnetcdf_c++.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOLSDyna-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOMINC-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOMovie-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkoggtheora-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOPLY-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOParallel-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkjsoncpp-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOParallelXML-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOSQL-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtksqlite-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOTecplotTable-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOVideo-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingMorphological-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingStatistics-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingStencil-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkInfovisBoostGraphAlgorithms-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkInteractionImage-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingContextOpenGL2-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingFreeTypeFontConfig-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingImage-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingLOD-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingVolumeOpenGL2-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkViewsContext2D-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkViewsInfovis-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkDomainsChemistry-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersAMR-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOExport-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtklibharu-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingGL2PSOpenGL2-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkgl2ps-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersParallel-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkexoIIc-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOGeometry-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIONetCDF-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtknetcdf_c++.4.2.0.dylib
 MazeRunner: /usr/local/lib/libnetcdf.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOGeometry-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIONetCDF-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkParallelCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOLegacy-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingOpenGL2-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkglew-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingMath-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkChartsCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingContext2D-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersImaging-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkInfovisLayout-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkInfovisCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkViewsCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkInteractionWidgets-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersHybrid-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingGeneral-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingSources-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersModeling-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingHybrid-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOImage-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkDICOMParser-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkmetaio-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkInteractionStyle-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersExtraction-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersStatistics-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingFourier-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkalglib-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingAnnotation-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingColor-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingVolume-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkImagingCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOXML-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOXMLParser-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkIOCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingLabel-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingFreeType-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkRenderingCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonColor-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersGeometry-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersSources-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersGeneral-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonComputationalGeometry-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkFiltersCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonExecutionModel-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonDataModel-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonTransforms-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonMisc-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonMath-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonSystem-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkCommonCore-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtksys-7.1.1.dylib
-MazeRunner: /usr/local/Cellar/vtk/7.1.0_6/lib/libvtkfreetype-7.1.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkParallelCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOLegacy-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingOpenGL2-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkglew-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingMath-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkChartsCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingContext2D-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersImaging-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkInfovisLayout-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkInfovisCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkViewsCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkInteractionWidgets-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersHybrid-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingGeneral-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingSources-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersModeling-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingHybrid-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOImage-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkDICOMParser-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkmetaio-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkInteractionStyle-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersExtraction-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersStatistics-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingFourier-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkalglib-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingAnnotation-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingColor-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingVolume-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkImagingCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOXML-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOXMLParser-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkIOCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtklz4-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingLabel-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingFreeType-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkRenderingCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonColor-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersGeometry-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersSources-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersGeneral-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonComputationalGeometry-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkFiltersCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonExecutionModel-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonDataModel-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonTransforms-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonMisc-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonMath-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonSystem-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkCommonCore-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtksys-8.0.1.dylib
+MazeRunner: /usr/local/Cellar/vtk/8.0.0_2/lib/libvtkfreetype-8.0.1.dylib
 MazeRunner: /usr/lib/libz.dylib
 MazeRunner: CMakeFiles/MazeRunner.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/isaacvonneutz/Maze/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable MazeRunner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ifreyja/Maze/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable MazeRunner"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MazeRunner.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -230,6 +233,6 @@ CMakeFiles/MazeRunner.dir/clean:
 .PHONY : CMakeFiles/MazeRunner.dir/clean
 
 CMakeFiles/MazeRunner.dir/depend:
-	cd /Users/isaacvonneutz/Maze && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/isaacvonneutz/Maze /Users/isaacvonneutz/Maze /Users/isaacvonneutz/Maze /Users/isaacvonneutz/Maze /Users/isaacvonneutz/Maze/CMakeFiles/MazeRunner.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ifreyja/Maze && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ifreyja/Maze /Users/ifreyja/Maze /Users/ifreyja/Maze /Users/ifreyja/Maze /Users/ifreyja/Maze/CMakeFiles/MazeRunner.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/MazeRunner.dir/depend
 

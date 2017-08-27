@@ -8,7 +8,6 @@
     Samantha Mintzmyer
 */
 
-
 #include "vtkSmartPointer.h"
 #include "vtkSphereSource.h"
 #include "vtkPolyDataMapper.h"
@@ -43,7 +42,6 @@
 #include "Grid.cxx"
 
 #include "vtkOpenGL.h"
-
 
 /****** REMOVED FOR TESTING **************************************************************
 /*
@@ -150,7 +148,7 @@ class WASDInteractorStyle : public vtkInteractorStyleFlight
 //  Create a new instance of the WASDInteractorStyle class
 
 vtkStandardNewMacro(WASDInteractorStyle);
-********* REMOVED FOR TESTING ************************************************/
+//********* REMOVED FOR TESTING ************************************************/
 
 /*
     class vtk441SceneMapper : public vtkOpenGLPolyDataMapper
@@ -232,7 +230,7 @@ class vtk441SceneMapper : public vtkOpenGLPolyDataMapper
     It's responsible for rendering a 4D representation of the maze from Grid.cxx
 */
 
-class vtk441MazeMapper : public vtk441Mapper
+class vtk441MazeMapper : public vtk441SceneMapper
 {
  public:
    static vtk441MazeMapper *New();
@@ -422,7 +420,7 @@ int main()
 	((vtkInteractorStyleFlight *)iren->GetInteractorStyle())->SetAutoAdjustCameraClippingRange(0);
 	iren->Initialize();
 	iren->Start();
-******** REMOVED FOR TESTING *********************************/
+//******** REMOVED FOR TESTING *********************************/
 
 	return EXIT_SUCCESS;
 }

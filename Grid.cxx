@@ -28,6 +28,7 @@ class Grid
  
     public:
 	Tile * Tiles;    // Array of Tiles
+        Grid();
 	Grid(int N);         // Initializes tiles array
 	void Boundaries(int N); // Sets up outer walls and top row of tiles
 	void genMaze();	//Function for traversing it, building maze
@@ -100,6 +101,18 @@ void Grid::PrintMaze()
     	if (sum == 15) std::cout << "┼";
     }
     std::cout<< "\n";
+}
+
+Grid::Grid()
+{
+	// Construct 20X20 array of tiles, +1 for null operator \0
+	this->Tiles = new Tile[(20*20)+1];
+	// Initialize tiles to false
+	for (int i = 0; i <= 20*20; i++)
+	{
+		this->Tiles[i] = Tile();
+
+	}
 }
 
 Grid::Grid(int N)

@@ -6,6 +6,11 @@ SET(VTK_DIR "/usr/local/Cellar/vtk/7.1.0_6")
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
 
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIR})
+link_libraries(${OPENGL_LIBRARIES})
+
+
 add_executable(MazeRunner MazeRunner.cxx)
 
 if(VTK_LIBRARIES)
