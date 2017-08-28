@@ -406,6 +406,9 @@ int main()
 	ren1->AddLight(Hlight);
 	ren1->SetLightFollowCamera(1);
 
+        iren->Initialize();
+        iren->Start();
+ 
 /******* REMOVED FOR TESTING *********************************	
 	vtkSmartPointer<WASDInteractorStyle> style =
 		vtkSmartPointer<WASDInteractorStyle>::New();
