@@ -165,6 +165,7 @@ class vtk441SceneMapper : public vtkOpenGLPolyDataMapper
     public:
 	vtk441SceneMapper()
 	{
+            std::cout << "...in scene Mapper";
 	    initialized = false;
 	}
 
@@ -235,7 +236,6 @@ class vtk441MazeMapper : public vtk441SceneMapper
  public:
    static vtk441MazeMapper *New();
    Grid Game;
-
 
    virtual void RenderPiece(vtkRenderer *ren, vtkActor *act)
    {
@@ -348,7 +348,7 @@ vtkStandardNewMacro(vtk441MazeMapper);
 
 int main()
 {
-    //  Call to Grid.cxx for new Maze
+    //  Call to Grid.cxx for new Maze Object
 
 	srand(time(NULL));
 	std::cout<<"Main Gen Game\n";
@@ -357,36 +357,69 @@ int main()
 	Game1.genMaze();		//Function for traversing it, building maze
 	
     //  Create new GUI scene and Maze
+        std::cout << "Create new GUI scene and Maze" << std::endl;
 
 	vtkSmartPointer<vtkSphereSource> sphere =
 		vtkSmartPointer<vtkSphereSource>::New();
+        std::cout << "Setting sphere center, ";
+        sphere->SetCenter(0.0, 0.0, 0.0);
+        std::cout << "radius, ";
+        sphere->SetRadius(5.0);
+        std::cout << "Theta res, ";
 	sphere->SetThetaResolution(100);
+        std::cout << "Phi res, ";
 	sphere->SetPhiResolution(100);
-	
+        std::cout << "and updating" << std::endl;
+        sphere->Update();
+
+    //  Create a mapper and actor
+        std::cout << "//  Create a mapper";
 	vtkSmartPointer<vtk441MazeMapper> win1Mapper =
 	    vtkSmartPointer<vtk441MazeMapper>::New();
-	win1Mapper->SetInputConnection(sphere->GetOutputPort());
-	
+        std::cout << " (set input connections)";
+	//  win1Mapper->SetInputConnection(sphere->GetOutputPort());
+	std::cout << " tie mapper to game, ";
 	win1Mapper->Game = Game1;
+        std::cout << " and set up lights";
+	win1Mapper->SetupLight();
 
+        std::cout << " and actor"
+            << std::endl;
 	vtkSmartPointer<vtkActor> win1Actor =
 	    vtkSmartPointer<vtkActor>::New();
 	win1Actor->SetMapper(win1Mapper);
 
+        vtkSmartPointer<vtkCamera> camera = 
+            vtkSmartPointer<vtkCamera>::New();
+        camera->SetPosition(0, 0, 20);
+        camera->SetFocalPoint(0, 0, 0);
+
+    //  Create a renderer, render window, and interactor
+        std::cout << "//  Create a renderer, render window, and interactor"
+            << std::endl;
 	vtkSmartPointer<vtkRenderer> ren1 =
 	    vtkSmartPointer<vtkRenderer>::New();
 
+        ren1->SetActiveCamera(camera);
+	ren1->SetViewport(0, 0, 1, 1);
+
+        win1Mapper->RenderPiece(ren1, win1Actor);
+
     //  Create a new Camera and WASD control to traverse Maze
+        std::cout << "//  Create a new Camera and WASD control to traverse Maze"
+            << std::endl;
 
 	vtkSmartPointer<vtkRenderWindow> renWin =
 	    vtkSmartPointer<vtkRenderWindow>::New();
 	renWin->AddRenderer(ren1);
-	ren1->SetViewport(0, 0, 1, 1);
 
 	vtkSmartPointer<vtkRenderWindowInteractor> iren =
 	    vtkSmartPointer<vtkRenderWindowInteractor>::New();
 	iren->SetRenderWindow(renWin);
 
+    //  Add actor to the scene
+        std::cout << "//  Add actor to the scene"
+            << std::endl;
 	bool doWindow1 = true;
 	if (doWindow1)
 		ren1->AddActor(win1Actor);
@@ -397,6 +430,12 @@ int main()
 	
 	renWin->SetSize(1000, 1000);
 
+    //  Render and interact
+        renWin->Render();
+        iren->Initialize();
+        iren->Start();
+
+/******* REMOVED FOR TESTING *********************************	
 	ren1->GetActiveCamera()->SetFocalPoint(0,0, 0);
 	ren1->GetActiveCamera()->SetPosition(100,195,200);
 	ren1->GetActiveCamera()->SetViewUp(0,0,1);
@@ -406,10 +445,7 @@ int main()
 	ren1->AddLight(Hlight);
 	ren1->SetLightFollowCamera(1);
 
-        iren->Initialize();
-        iren->Start();
  
-/******* REMOVED FOR TESTING *********************************	
 	vtkSmartPointer<WASDInteractorStyle> style =
 		vtkSmartPointer<WASDInteractorStyle>::New();
 	
