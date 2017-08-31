@@ -79,6 +79,8 @@
 
 int main()
 {
+    std::cout<<"Generate a new Grid\n";
+    Grid Game1 = Grid(M);     // Function for making new grid
 
     // Create a sphere
     vtkSmartPointer<vtkSphereSource> sphereSource = 
@@ -127,8 +129,6 @@ int main()
 
 //    Call to Grid.cxx for new Maze Object
 /*
-    std::cout<<"Generate a new Grid\n";
-    Grid Game1 = Grid(M);     // Function for making new grid
     Game1.Boundaries(M);
     Game1.genMaze();        //Function for building maze
     

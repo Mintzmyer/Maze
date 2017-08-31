@@ -146,7 +146,7 @@ void Grid::Boundaries(int N)
 		Tiles[i].Walls[0] = true;
 	    }
 	}
-	this->PrintMaze();	
+	//this->PrintMaze();	
 //	this->genMaze();
 }
 int Grid::Up(int Pos) 		//Returns M*M if impossible or array pos result of move
@@ -281,7 +281,6 @@ void Grid::genMaze()
 	}
 }
 
-/************
 int main()
 {
 	srand(time(NULL));
@@ -289,10 +288,10 @@ int main()
 	Grid Game1 = Grid(M); 	// Function for activating outer walls and top row of tiles
 	Game1.PrintMaze();
 	Game1.Boundaries(M);
+	Game1.PrintMaze();
 	std::cout << "Main Gen Maze\n";
 	Game1.genMaze();		//Function for traversing it, building maze
 	Game1.PrintMaze();
 //	std::cout << "Print Maze\n";
 //	Game1.PrintMaze();      	// Fn for printing Grid ‾_|‾|_| 	
 }
-*************/
