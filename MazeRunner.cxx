@@ -42,8 +42,10 @@
 #include "Grid.cxx"
 
 #include "vtkOpenGL.h"
+#include "vtkMapper.h"
 
-/*
+/* 
+    //  vtkInteractorStyleTerrain
     class WASDInteractorStyle : public vtkInteractorStyleFlight
 
     This class extends vtkInteractorStyleFlight
@@ -53,21 +55,21 @@
 
 
 /*
-    class vtkMazeMapper : public vtkGraphMapper
+    class vtkMazeMapper : public vtkPolyDataMapper
 
-    This class extends vtkGraphMapper
+    This class extends vtkPolyDataMapper
     It's responsible for setting up the maze floor, walls, lighting
 */
-class vtkMazeMapper : public vtkGraphMapper
+class vtkMazeMapper : public vtkPolyDataMapper
 {
   protected:
 
   public:
-    static vtkMazeMapper *New();
+    static vtkMazeMapper* New();
     Grid Game;
     void DrawFloor(void);
     void SetLights(void);
-    virtual void RenderMaze(vtkRenderer *, vtkActor *);
+    void MapMaze(vtkRenderer *, vtkActor *);
 };
   
 //  Draw the floor, and eventually ceiling of the maze 
@@ -84,10 +86,9 @@ void vtkMazeMapper::DrawFloor(void)
 }
 
 //  Set up lighting
-void vtkMazeMapper::SetLights(void);
+void vtkMazeMapper::SetLights(void)
 {
     //  diffuse, ambient, and specular lighting
-    glEnable(GL_LIGHTING);
     GLfloat diffuse[4] = { 0.8, 0.8, 0.8, 1};
     GLfloat ambient[4] = {0.2, 0.2, 0.2, 1};
     GLfloat specular[4] = {0.0, 0.0, 0.0, 1};
@@ -100,18 +101,29 @@ void vtkMazeMapper::SetLights(void);
     GLfloat NEcorner[4] = { 10*M, 10*M, 13, 0 };
     GLfloat *pos[5] = {SWcorner, NWcorner, center, SEcorner, NEcorner};
 
+    //  Add lights
+    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, center);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_DEPTH_TEST);
+    
+/*
     //  Array of lights
-    GL_LIGHTS *light[5] = {GL_LIGHT0, GL_LIGHT1, GL_LIGHT2, GL_LIGHT3, GL_LIGHT4};
+    GL_LIGHT *light[5] = {GL_LIGHT0, GL_LIGHT1, GL_LIGHT2, GL_LIGHT3, GL_LIGHT4};
     for (int i = 0; i < 5; i++)
     {
         glEnable(light[i]);
         glLightfv(light[i], GL_POSITION, pos[i];
     }
+*/
 }
 
 
-virtual void vtkMazeMapper::RenderMaze(vtkRenderer *ren, vtkActor *act)
-    {
+void vtkMazeMapper::MapMaze(vtkRenderer *ren, vtkActor *act)
+{
 
 
 }
@@ -139,9 +151,11 @@ int main()
     sphereSource->Update();
  
     // Create a mapper and actor
-    vtkSmartPointer<vtkPolyDataMapper> mapper = 
-        vtkSmartPointer<vtkPolyDataMapper>::New();
-    mapper->SetInputConnection(sphereSource->GetOutputPort());
+    vtkSmartPointer<vtkMazeMapper> mapper = 
+        vtkSmartPointer<vtkMazeMapper>::New();
+    //mapper->SetInputConnection(sphereSource->GetOutputPort());
+    mapper->DrawFloor();
+    mapper->SetLights();
  
     vtkSmartPointer<vtkActor> actor = 
         vtkSmartPointer<vtkActor>::New();
@@ -172,6 +186,8 @@ int main()
     // Render and interact
     renderWindow->Render();
     renderWindowInteractor->Start();
+
+}
 
 
 
@@ -261,8 +277,5 @@ int main()
     return EXIT_SUCCESS;
 */
 
-
-
-}
 
 
