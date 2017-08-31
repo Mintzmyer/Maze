@@ -53,20 +53,69 @@
 
 
 /*
-    class vtk441SceneMapper : public vtkOpenGLPolyDataMapper
+    class vtkMazeMapper : public vtkGraphMapper
 
-    This class extends vtkOpenGLPolyDataMapper
-    It's responsible for setting up the lighting for the scene
+    This class extends vtkGraphMapper
+    It's responsible for setting up the maze floor, walls, lighting
 */
+class vtkMazeMapper : public vtkGraphMapper
+{
+  protected:
+
+  public:
+    static vtkMazeMapper *New();
+    Grid Game;
+    void DrawFloor(void);
+    void SetLights(void);
+    virtual void RenderMaze(vtkRenderer *, vtkActor *);
+};
+  
+//  Draw the floor, and eventually ceiling of the maze 
+void vtkMazeMapper::DrawFloor(void)
+{
+    glDisable(GL_LIGHTING);
+    glBegin(GL_QUADS);
+    glVertex3f(-18.0, 0.0, 27.0);
+        glVertex3f(27.0, 0.0, 27.0);
+        glVertex3f(27.0, 0.0, -18.0);
+        glVertex3f(-18.0, 0.0, -18.0);
+    glEnd();
+    glEnable(GL_LIGHTING);
+}
+
+//  Set up lighting
+void vtkMazeMapper::SetLights(void);
+{
+    //  diffuse, ambient, and specular lighting
+    glEnable(GL_LIGHTING);
+    GLfloat diffuse[4] = { 0.8, 0.8, 0.8, 1};
+    GLfloat ambient[4] = {0.2, 0.2, 0.2, 1};
+    GLfloat specular[4] = {0.0, 0.0, 0.0, 1};
+
+    //  lighting locations; center and four corners
+    GLfloat SWcorner[4] = { 1, 2, 13, 0 };
+    GLfloat NWcorner[4] = { 10*M, 2, 13, 0 };
+    GLfloat center[4] = { 10*M/2, 10*M/2, 13, 0 };
+    GLfloat SEcorner[4] = { 1, 10*M, 13, 0 };
+    GLfloat NEcorner[4] = { 10*M, 10*M, 13, 0 };
+    GLfloat *pos[5] = {SWcorner, NWcorner, center, SEcorner, NEcorner};
+
+    //  Array of lights
+    GL_LIGHTS *light[5] = {GL_LIGHT0, GL_LIGHT1, GL_LIGHT2, GL_LIGHT3, GL_LIGHT4};
+    for (int i = 0; i < 5; i++)
+    {
+        glEnable(light[i]);
+        glLightfv(light[i], GL_POSITION, pos[i];
+    }
+}
 
 
+virtual void vtkMazeMapper::RenderMaze(vtkRenderer *ren, vtkActor *act)
+    {
 
-/*
-    class vtk441MazeMapper : public vtk441SceneMapper
 
-    This class extends vtk441SceneMapper
-    It's responsible for rendering a 4D representation of the maze from Grid.cxx
-*/
+}
+
 
 
 

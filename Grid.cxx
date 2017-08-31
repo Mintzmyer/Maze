@@ -281,6 +281,7 @@ void Grid::genMaze()
 	}
 }
 
+/*
 int main()
 {
 	srand(time(NULL));
@@ -295,3 +296,4 @@ int main()
 //	std::cout << "Print Maze\n";
 //	Game1.PrintMaze();      	// Fn for printing Grid ‾_|‾|_| 	
 }
+*/
