@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.12.1)
 
-PROJECT(MazeRunner)
+PROJECT(MazeGUI)
 SET(VTK_DIR "/usr/local/Cellar/vtk/7.1.0_6")
 
 find_package(VTK REQUIRED)
@@ -11,11 +11,11 @@ include_directories(${OPENGL_INCLUDE_DIR})
 link_libraries(${OPENGL_LIBRARIES})
 
 
-add_executable(MazeRunner MazeRunner.cxx)
+add_executable(MazeGUI MazeGUI.cxx)
 
 if(VTK_LIBRARIES)
-  target_link_libraries(MazeRunner ${VTK_LIBRARIES})
+  target_link_libraries(MazeGUI ${VTK_LIBRARIES})
 else()
-  target_link_libraries(MazeRunner vtkHybrid)
+  target_link_libraries(MazeGUI vtkHybrid)
 endif()
 
