@@ -10,6 +10,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 #ifndef WIN32
 #include <unistd.h>
@@ -30,19 +31,7 @@
 #include <GL/glut.h>
 #endif
 
-#include <math.h>
 #include "Grid.cxx"
-
-
-/* 
-    //  vtkInteractorStyleTerrain
-    class WASDInteractorStyle : public vtkInteractorStyleFlight
-
-    This class extends vtkInteractorStyleFlight
-    It defines OnKeyPress() function that maps movement to the WASD keys
-*/
-
-
 
 /*
     class MazeMapper
@@ -59,6 +48,7 @@ class MazeMapper
     static MazeMapper* New();
     Grid Game;
     void DrawFloor(void);
+    void DrawWalls(void);
     void SetLights(void);
 };
   
@@ -73,6 +63,13 @@ void MazeMapper::DrawFloor(void)
         glVertex3f(-18.0, 0.0, -18.0);
     glEnd();
     glEnable(GL_LIGHTING);
+}
+
+//  Draw walls of maze
+void MazeMapper::DrawWalls(void)
+{
+
+
 }
 
 //  Set up lighting
@@ -125,19 +122,22 @@ int main(int argc, char *argv[])
     Grid Game1 = Grid(M);     // Function for making new grid
 
     //  Create a MazeMapper
+    std::cout << "Generate new MazeMapper\n";
     MazeMapper* Mapper = new MazeMapper();
-    Mapper->DrawFloor();
-    Mapper->SetLights();
+    //  Mapper->DrawFloor();
+    //  Mapper->SetLights();
 
     //  Create a camera
  
     //  Create a renderer, render window, and interactor
+    std::cout << "glutInit and window\n";
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
     glutCreateWindow("glutMaze");
-    glutDisplayFunc(draw);
-    glutKeyboardFunc(keyboard);
-    glutVisibilityFunc(visible);
+
+    //  glutDisplayFunc(draw);
+    //  glutKeyboardFunc(keyboard);
+    //  glutVisibilityFunc(visible);
 
     //  Set up OpenGL state
     glClearDepth(1.0);
