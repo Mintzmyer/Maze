@@ -8,41 +8,31 @@
     Samantha Mintzmyer
 */
 
-#include "vtkSmartPointer.h"
-#include "vtkSphereSource.h"
-#include "vtkPolyDataMapper.h"
-#include "vtkActor.h"
-#include "vtkInteractorStyle.h"
-#include "vtkInteractorStyleFlight.h"
-#include "vtkObjectFactory.h"
-#include "vtkRenderer.h"
-#include "vtkRenderWindow.h"
-#include <vtkInteractorStyleTrackballCamera.h>
-#include <vtkInteractorStyleTerrain.h>
-#include "vtkRenderWindowInteractor.h"
-#include "vtkProperty.h"
-#include "vtkCamera.h"
-#include "vtkLight.h"
-#include "vtkOpenGLPolyDataMapper.h"
-#include "vtkJPEGReader.h"
-#include "vtkImageData.h"
-#include <vtkAppendPolyData.h>
-#include <vtkTimerLog.h>
-#include <vtkTransform.h>
-#include <vtkDepthSortPolyData.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-#include <vtkPolyData.h>
-#include <vtkPointData.h>
-#include <vtkPolyDataReader.h>
-#include <vtkPoints.h>
-#include <vtkUnsignedCharArray.h>
-#include <vtkFloatArray.h>
-#include <vtkDoubleArray.h>
-#include <vtkCellArray.h>
+#ifndef WIN32
+#include <unistd.h>
+#else
+#define random rand
+#define srandom srand
+#endif
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
+
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
+#include <math.h>
 #include "Grid.cxx"
 
-#include "vtkOpenGL.h"
-#include "vtkMapper.h"
 
 /* 
     //  vtkInteractorStyleTerrain
@@ -70,7 +60,6 @@ class MazeMapper
     Grid Game;
     void DrawFloor(void);
     void SetLights(void);
-    void MapMaze(vtkRenderer *, vtkActor *);
 };
   
 //  Draw the floor, and eventually ceiling of the maze 
@@ -123,15 +112,6 @@ void MazeMapper::SetLights(void)
 }
 
 
-void MazeMapper::MapMaze(vtkRenderer *ren, vtkActor *act)
-{
-
-
-}
-
-
-
-
 /*
     This is the main() function of MazeGUI.cxx
     It calls Grid.cxx to generate a maze
@@ -139,7 +119,7 @@ void MazeMapper::MapMaze(vtkRenderer *ren, vtkActor *act)
     It creates a new Camera and WASD control
 */
 
-int main()
+int main(int argc, char *argv[])
 {
     std::cout<<"Generate a new Grid\n";
     Grid Game1 = Grid(M);     // Function for making new grid
@@ -151,101 +131,25 @@ int main()
 
     //  Create a camera
  
-    // Create a renderer, render window, and interactor
-
-    // Add the actor to the scene
-
-    // Render and interact
-
-}
-
-
-
-
-//    Call to Grid.cxx for new Maze Object
-/*
-    Game1.Boundaries(M);
-    Game1.genMaze();        //Function for building maze
-    
-    //  Create new GUI scene and Maze
-    std::cout << "Create new GUI scene and Maze" << std::endl;
-
-    vtkSmartPointer<vtkSphereSource> sphere =
-      vtkSmartPointer<vtkSphereSource>::New();
-    std::cout << "Setting sphere center, ";
-    sphere->SetCenter(0.0, 0.0, 0.0);
-    std::cout << "radius, ";
-    sphere->SetRadius(5.0);
-    std::cout << "Theta res, ";
-    sphere->SetThetaResolution(100);
-    std::cout << "Phi res, ";
-    sphere->SetPhiResolution(100);
-    std::cout << "and updating" << std::endl;
-    sphere->Update();
-
-    //  Create a mapper and actor
-    std::cout << "//  Create a mapper";
-    vtkSmartPointer<vtkPolyDataMapper> mapper = 
-      vtkSmartPointer<vtkPolyDataMapper>::New();
-    mapper->SetInputConnection(sphere->GetOutputPort();
-    std::cout << " tie mapper to game, ";
-    win1Mapper->Game = Game1;
-    std::cout << " and set up lights";
-    win1Mapper->SetupLight();
-
-    std::cout << " and actor"
-        << std::endl;
-    vtkSmartPointer<vtkActor> win1Actor =
-      vtkSmartPointer<vtkActor>::New();
-    win1Actor->SetMapper(win1Mapper);
-
-    vtkSmartPointer<vtkCamera> camera = 
-      vtkSmartPointer<vtkCamera>::New();
-    camera->SetPosition(0, 0, 20);
-    camera->SetFocalPoint(0, 0, 0);
-
     //  Create a renderer, render window, and interactor
-    std::cout << "//  Create a renderer, render window, and interactor"
-        << std::endl;
-    vtkSmartPointer<vtkRenderer> ren1 =
-        vtkSmartPointer<vtkRenderer>::New();
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
+    glutCreateWindow("glutMaze");
+    glutDisplayFunc(draw);
+    glutKeyboardFunc(keyboard);
+    glutVisibilityFunc(visible);
 
-    ren1->SetActiveCamera(camera);
-    ren1->SetViewport(0, 0, 1, 1);
+    //  Set up OpenGL state
+    glClearDepth(1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glMatrixMode(GL_PROJECTION);
+    glFrustum(-1.0, 1.0, -1.0, 1.0, 1.0, 20);
+    glMatrixMode(GL_MODELVIEW);
 
-    win1Mapper->RenderPiece(ren1, win1Actor);
+    //  Add Maze
 
-    //  Create a new Camera and WASD control to traverse Maze
-    std::cout << "//  Create a new Camera and WASD control to traverse Maze"
-        << std::endl;
-
-    vtkSmartPointer<vtkRenderWindow> renWin =
-        vtkSmartPointer<vtkRenderWindow>::New();
-    renWin->AddRenderer(ren1);
-
-    vtkSmartPointer<vtkRenderWindowInteractor> iren =
-        vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    iren->SetRenderWindow(renWin);
-
-    //  Add actor to the scene
-    std::cout << "//  Add actor to the scene"
-        << std::endl;
-    bool doWindow1 = true;
-    if (doWindow1)
-        ren1->AddActor(win1Actor);
-    ren1->SetBackground(0.0, 0.0, 0.0);
-    
-    vtkSmartPointer<vtkLight> Hlight = vtkSmartPointer<vtkLight>::New();
-    Hlight->SetLightTypeToHeadlight();
-    
-    renWin->SetSize(1000, 1000);
-
-    //  Render and interact
-    renWin->Render();
-    iren->Initialize();
-    iren->Start();
-    return EXIT_SUCCESS;
-*/
-
-
+    //  Start event processing
+    glutMainLoop();
+    return 0;
+}
 
