@@ -55,17 +55,18 @@
 
 
 /*
-    class vtkMazeMapper : public vtkPolyDataMapper
+    class MazeMapper
 
-    This class extends vtkPolyDataMapper
+    This class uses OpenGL to map the maze into graphics
     It's responsible for setting up the maze floor, walls, lighting
 */
-class vtkMazeMapper : public vtkPolyDataMapper
+class MazeMapper 
 {
   protected:
 
   public:
-    static vtkMazeMapper* New();
+    MazeMapper();   
+    static MazeMapper* New();
     Grid Game;
     void DrawFloor(void);
     void SetLights(void);
@@ -73,7 +74,7 @@ class vtkMazeMapper : public vtkPolyDataMapper
 };
   
 //  Draw the floor, and eventually ceiling of the maze 
-void vtkMazeMapper::DrawFloor(void)
+void MazeMapper::DrawFloor(void)
 {
     glDisable(GL_LIGHTING);
     glBegin(GL_QUADS);
@@ -86,7 +87,7 @@ void vtkMazeMapper::DrawFloor(void)
 }
 
 //  Set up lighting
-void vtkMazeMapper::SetLights(void)
+void MazeMapper::SetLights(void)
 {
     //  diffuse, ambient, and specular lighting
     GLfloat diffuse[4] = { 0.8, 0.8, 0.8, 1};
@@ -122,7 +123,7 @@ void vtkMazeMapper::SetLights(void)
 }
 
 
-void vtkMazeMapper::MapMaze(vtkRenderer *ren, vtkActor *act)
+void MazeMapper::MapMaze(vtkRenderer *ren, vtkActor *act)
 {
 
 
@@ -143,49 +144,18 @@ int main()
     std::cout<<"Generate a new Grid\n";
     Grid Game1 = Grid(M);     // Function for making new grid
 
-    // Create a sphere
-    vtkSmartPointer<vtkSphereSource> sphereSource = 
-        vtkSmartPointer<vtkSphereSource>::New();
-    sphereSource->SetCenter(0.0, 0.0, 0.0);
-    sphereSource->SetRadius(1.0);
-    sphereSource->Update();
- 
-    // Create a mapper and actor
-    vtkSmartPointer<vtkMazeMapper> mapper = 
-        vtkSmartPointer<vtkMazeMapper>::New();
-    //mapper->SetInputConnection(sphereSource->GetOutputPort());
-    mapper->DrawFloor();
-    mapper->SetLights();
- 
-    vtkSmartPointer<vtkActor> actor = 
-        vtkSmartPointer<vtkActor>::New();
-    actor->SetMapper(mapper);
- 
-    vtkSmartPointer<vtkCamera> camera = 
-        vtkSmartPointer<vtkCamera>::New();
-    camera->SetPosition(0, 0, 20);
-    camera->SetFocalPoint(0, 0, 0);
+    //  Create a MazeMapper
+    MazeMapper* Mapper = new MazeMapper();
+    Mapper->DrawFloor();
+    Mapper->SetLights();
+
+    //  Create a camera
  
     // Create a renderer, render window, and interactor
-    vtkSmartPointer<vtkRenderer> renderer = 
-        vtkSmartPointer<vtkRenderer>::New();
- 
-    renderer->SetActiveCamera(camera);
- 
-    vtkSmartPointer<vtkRenderWindow> renderWindow = 
-        vtkSmartPointer<vtkRenderWindow>::New();
-    renderWindow->AddRenderer(renderer);
-    vtkSmartPointer<vtkRenderWindowInteractor> renderWindowInteractor = 
-        vtkSmartPointer<vtkRenderWindowInteractor>::New();
-    renderWindowInteractor->SetRenderWindow(renderWindow);
- 
+
     // Add the actor to the scene
-    renderer->AddActor(actor);
-    renderer->SetBackground(1,1,1); // Background color white
- 
+
     // Render and interact
-    renderWindow->Render();
-    renderWindowInteractor->Start();
 
 }
 
