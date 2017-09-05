@@ -47,22 +47,28 @@ class MazeMapper
 //    MazeMapper();   
     static MazeMapper* New();
     Grid Game;
-    void DrawFloor(void);
+    //  void DrawFloor(void);
     void DrawWalls(void);
     void SetLights(void);
 };
   
 //  Draw the floor, and eventually ceiling of the maze 
-void MazeMapper::DrawFloor(void)
+void DrawFloor(void)
 {
-    glDisable(GL_LIGHTING);
+    std::cout << "In DrawFloor\n";
+    //  glDisable(GL_LIGHTING);
     glBegin(GL_QUADS);
+    std::cout << "Begun quad definition\n";
+    glColor3f(0.855, 0.647, 0.125);
+    std::cout << "Color set to goldenrod\n";
     glVertex3f(-18.0, 0.0, 27.0);
+        std::cout << "One gl vertex defined\n";
         glVertex3f(27.0, 0.0, 27.0);
         glVertex3f(27.0, 0.0, -18.0);
         glVertex3f(-18.0, 0.0, -18.0);
     glEnd();
-    glEnable(GL_LIGHTING);
+    std::cout << "Finished DrawFloor\n";
+    //  glEnable(GL_LIGHTING);
 }
 
 //  Draw walls of maze
@@ -123,8 +129,8 @@ int main(int argc, char *argv[])
 
     //  Create a MazeMapper
     std::cout << "Generate new MazeMapper\n";
-    MazeMapper* Mapper = new MazeMapper();
-    //  Mapper->DrawFloor();
+    //  MazeMapper* Mapper = new MazeMapper();
+    //  DrawFloor();
     //  Mapper->SetLights();
 
     //  Create a camera
@@ -135,7 +141,7 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
     glutCreateWindow("glutMaze");
 
-    //  glutDisplayFunc(draw);
+    glutDisplayFunc(DrawFloor);
     //  glutKeyboardFunc(keyboard);
     //  glutVisibilityFunc(visible);
 
