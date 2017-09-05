@@ -47,8 +47,9 @@ class MazeMapper
 //    MazeMapper();   
     static MazeMapper* New();
     Grid Game;
-    //  void DrawFloor(void);
+    void DrawFloor(void);
     void DrawWalls(void);
+    void keyboard(unsigned char ch, int x, int y);
     void SetLights(void);
 };
   
@@ -62,10 +63,10 @@ void DrawFloor(void)
 
     glBegin(GL_QUADS);
     glColor3f(0.855, 0.647, 0.125);
-    glVertex3f(0.0, 20.0, -20.0);
-        glVertex3f(20.0, 20.0, -20.0);
-        glVertex3f(20.0, 0.0, -20.0);
-        glVertex3f(0.0, 0.0, -20.0);
+    glVertex3f(-10.0, 10.0, -20.0);
+        glVertex3f(10.0, 10.0, -20.0);
+        glVertex3f(10.0, -10.0, -20.0);
+        glVertex3f(-10.0, -10.0, -20.0);
     glEnd();
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
@@ -78,6 +79,16 @@ void MazeMapper::DrawWalls(void)
 {
 
 
+}
+
+void keyboard(unsigned char ch, int x, int y)
+{
+    switch (ch) {
+    //  ESC
+    case 27:    
+        exit(0);
+        break;
+    }
 }
 
 //  Set up lighting
@@ -144,7 +155,7 @@ int main(int argc, char *argv[])
     glutCreateWindow("Maze 98");
 
     glutDisplayFunc(DrawFloor);
-    //  glutKeyboardFunc(keyboard);
+    glutKeyboardFunc(keyboard);
     //  glutVisibilityFunc(visible);
 
     //  Set up OpenGL state
