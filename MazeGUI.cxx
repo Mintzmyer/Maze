@@ -77,8 +77,25 @@ void DrawFloor(void)
 //  Draw walls of maze
 void MazeMapper::DrawWalls(void)
 {
+    for (int i = 0; i < M*M; i++)
+    {
+        if (Game.Tiles[i].Walls[1])
+        {
 
+        }
+        if (Game.Tiles[i].Walls[2])
+        {
 
+        }
+        if (Game.Tiles[i].Walls[3])
+        {
+
+        }
+        if (Game.Tiles[i].Walls[4])
+        {
+
+        }
+    }
 }
 
 void keyboard(unsigned char ch, int x, int y)
