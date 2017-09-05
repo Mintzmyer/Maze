@@ -55,20 +55,22 @@ class MazeMapper
 //  Draw the floor, and eventually ceiling of the maze 
 void DrawFloor(void)
 {
-    std::cout << "In DrawFloor\n";
-    //  glDisable(GL_LIGHTING);
+    std::cout << "Drawing Floor\n";
+    glClear(GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
+
     glBegin(GL_QUADS);
-    std::cout << "Begun quad definition\n";
     glColor3f(0.855, 0.647, 0.125);
-    std::cout << "Color set to goldenrod\n";
-    glVertex3f(-18.0, 0.0, 27.0);
-        std::cout << "One gl vertex defined\n";
-        glVertex3f(27.0, 0.0, 27.0);
-        glVertex3f(27.0, 0.0, -18.0);
-        glVertex3f(-18.0, 0.0, -18.0);
+    glVertex3f(0.0, 20.0, -20.0);
+        glVertex3f(20.0, 20.0, -20.0);
+        glVertex3f(20.0, 0.0, -20.0);
+        glVertex3f(0.0, 0.0, -20.0);
     glEnd();
-    std::cout << "Finished DrawFloor\n";
-    //  glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_DEPTH_TEST);
+    
+    glutSwapBuffers();
 }
 
 //  Draw walls of maze
@@ -139,7 +141,7 @@ int main(int argc, char *argv[])
     std::cout << "glutInit and window\n";
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
-    glutCreateWindow("glutMaze");
+    glutCreateWindow("Maze 98");
 
     glutDisplayFunc(DrawFloor);
     //  glutKeyboardFunc(keyboard);
@@ -147,7 +149,7 @@ int main(int argc, char *argv[])
 
     //  Set up OpenGL state
     glClearDepth(1.0);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.0, 1.0, 0.0, 0.0);
     glMatrixMode(GL_PROJECTION);
     glFrustum(-1.0, 1.0, -1.0, 1.0, 1.0, 20);
     glMatrixMode(GL_MODELVIEW);
