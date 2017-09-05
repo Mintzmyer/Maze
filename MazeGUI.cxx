@@ -47,14 +47,16 @@ class MazeMapper
 //    MazeMapper();   
     static MazeMapper* New();
     Grid Game;
-    void DrawFloor(void);
+    static void DrawMaze(void);
+    static void DrawFloor(void);
     void DrawWalls(void);
     void keyboard(unsigned char ch, int x, int y);
     void SetLights(void);
 };
-  
+
+
 //  Draw the floor, and eventually ceiling of the maze 
-void DrawFloor(void)
+void MazeMapper::DrawFloor(void)
 {
     std::cout << "Drawing Floor\n";
     glClear(GL_DEPTH_BUFFER_BIT);
@@ -63,10 +65,10 @@ void DrawFloor(void)
 
     glBegin(GL_QUADS);
     glColor3f(0.855, 0.647, 0.125);
-    glVertex3f(-10.0, 10.0, -20.0);
-        glVertex3f(10.0, 10.0, -20.0);
-        glVertex3f(10.0, -10.0, -20.0);
-        glVertex3f(-10.0, -10.0, -20.0);
+    glVertex3f(0.0, 0.0, -20.0);
+        glVertex3f(M*10.0, 0.0, -20.0);
+        glVertex3f(M*10.0, M*10.0, -20.0);
+        glVertex3f(0.0, M*10.0, -20.0);
     glEnd();
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
@@ -81,7 +83,16 @@ void MazeMapper::DrawWalls(void)
     {
         if (Game.Tiles[i].Walls[1])
         {
-
+            glBegin(GL_QUADS);
+            glTexCoord2f(0,1);
+            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, 0);
+            glTexCoord2f(0,0);
+            glVertex3f(((i%M)*10)+0.05, (((i/M)+1)*10)+0.05, 0);
+            glTexCoord2f(1,0);
+            glVertex3f(((i%M)*10)+0.05, (((i/M)+1)*10)+0.05, 10);
+            glTexCoord2f(1,1);
+            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, 10);
+            glEnd();
         }
         if (Game.Tiles[i].Walls[2])
         {
@@ -98,6 +109,14 @@ void MazeMapper::DrawWalls(void)
     }
 }
 
+//  Calls the methods to draw each piece of the maze 
+void MazeMapper::DrawMaze(void)
+{
+    MazeMapper::DrawFloor();
+    MazeMapper* Mapper = new MazeMapper();
+    Mapper->DrawWalls();
+}
+ 
 void keyboard(unsigned char ch, int x, int y)
 {
     switch (ch) {
@@ -159,8 +178,8 @@ int main(int argc, char *argv[])
 
     //  Create a MazeMapper
     std::cout << "Generate new MazeMapper\n";
-    //  MazeMapper* Mapper = new MazeMapper();
-    //  DrawFloor();
+    MazeMapper* Mapper = new MazeMapper();
+    //  Mapper->DrawFloor();
     //  Mapper->SetLights();
 
     //  Create a camera
@@ -171,7 +190,7 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
     glutCreateWindow("Maze 98");
 
-    glutDisplayFunc(DrawFloor);
+    glutDisplayFunc(MazeMapper::DrawMaze);
     glutKeyboardFunc(keyboard);
     //  glutVisibilityFunc(visible);
 
