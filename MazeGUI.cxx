@@ -65,10 +65,10 @@ void MazeMapper::DrawFloor(void)
 
     glBegin(GL_QUADS);
     glColor3f(0.855, 0.647, 0.125);
-    glVertex3f(0.0, 0.0, -20.0);
-        glVertex3f(M*10.0, 0.0, -20.0);
-        glVertex3f(M*10.0, M*10.0, -20.0);
-        glVertex3f(0.0, M*10.0, -20.0);
+    glVertex3f(-(M/2)*1.0, -(M/2)*1.0, -20.0);
+        glVertex3f((M/2)*1.0, -(M/2)*1.0, -20.0);
+        glVertex3f((M/2)*1.0, (M/2)*1.0, -20.0);
+        glVertex3f(-(M/2)*1.0, (M/2)*1.0, -20.0);
     glEnd();
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
@@ -79,41 +79,97 @@ void MazeMapper::DrawFloor(void)
 //  Draw walls of maze
 void MazeMapper::DrawWalls(void)
 {
+    std::cout << "Starting on the walls of " << M << "x"<< M <<" grid!\n";
     for (int i = 0; i < M*M; i++)
     {
         if (Game.Tiles[i].Walls[1])
         {
+            std::cout << "Making " << i << "th 1st wall\n";
             glBegin(GL_QUADS);
+            glColor3f(0.698, 0.133, 0.133);
             glTexCoord2f(0,1);
-            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, 0);
+            glVertex3f(((i%M)-10)+0.05, ((i/M)-10), -20);
             glTexCoord2f(0,0);
-            glVertex3f(((i%M)*10)+0.05, (((i/M)+1)*10)+0.05, 0);
+            glVertex3f(((i%M)-10)+0.05, (((i/M)+1)-9.0), -20);
             glTexCoord2f(1,0);
-            glVertex3f(((i%M)*10)+0.05, (((i/M)+1)*10)+0.05, 10);
+            glVertex3f(((i%M)-10)+0.05, (((i/M)+1)-9.0), -19);
             glTexCoord2f(1,1);
-            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, 10);
+            glVertex3f(((i%M)-10)+0.05, ((i/M)-10), -19);
             glEnd();
         }
         if (Game.Tiles[i].Walls[2])
         {
+            std::cout << "Making " << i << "th 2nd wall\n";
+            glBegin(GL_QUADS);
+            glColor3f(0.698, 0.133, 0.133);
+            glTexCoord2f(0,0);
+            glVertex3f(((i%M)-10), ((i/M)-9)-0.05, -20);
+            glTexCoord2f(1,0);
+            glVertex3f(((i%M)-9), ((i/M)-9)-0.05, -20);
+            glTexCoord2f(1,1);
+            glVertex3f(((i%M)-9), ((i/M)-9)-0.05, -19);
+            glTexCoord2f(0,1);
+            glVertex3f(((i%M)-10), ((i/M)-9)-0.05, -19);
+            glEnd();
 
         }
+/*
         if (Game.Tiles[i].Walls[3])
         {
+            std::cout << "Making " << i << "th 3rd wall\n";
+            glBegin(GL_QUADS);
+            glColor3f(0.698, 0.133, 0.133);
+            glTexCoord2f(1,0);
+            glVertex3f((((i%M)+1)*10)-0.05, ((i/M)+1)*10, -20);
+            glTexCoord2f(1,1);
+            glVertex3f((((i%M)+1)*10)-0.05, ((i/M))*10, -20);
+            glTexCoord2f(0,1);
+            glVertex3f((((i%M)+1)*10)-0.05, ((i/M))*10, -10);
+            glTexCoord2f(0,0);
+            glVertex3f((((i%M)+1)*10)-0.05, ((i/M)+1)*10, -10);
+            glEnd();
 
         }
         if (Game.Tiles[i].Walls[4])
         {
-
+            std::cout << "Making " << i << "th 4th wall\n";
+            glBegin(GL_QUADS);
+            glColor3f(0.698, 0.133, 0.133);
+            glTexCoord2f(1,1);
+            glVertex3f((((i%M)+1)*10)-0.05, (((i/M))*10)+0.05, -20);
+            glTexCoord2f(1,0);
+            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, -20);
+            glTexCoord2f(0,0);
+            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, -10);
+            glTexCoord2f(0,1);
+            glVertex3f((((i%M)+1)*10)-0.05, (((i/M))*10)+0.05, -10);
+            glEnd();
         }
+*/
+/*
+        glBegin(GL_QUADS);
+        glColor3f(0.722, 0.525, 0.043);
+        glVertex3f((i%M)-9.0, (i/M)-9.0, -19.0);
+        glVertex3f((i%M)-10.0, (i/M)-9.0, -19.0);
+        glVertex3f((i%M)-10.0, (i/M)-10.0, -19.0);
+        glVertex3f((i%M)-9.0, (i/M)-10.0, -19.0);
+        glEnd();
+*/
+
     }
+    glutSwapBuffers();
 }
 
 //  Calls the methods to draw each piece of the maze 
 void MazeMapper::DrawMaze(void)
 {
+    std::cout<<"Generate a new Grid\n";
+    //  Grid Game1 = Grid();     // Function for making new grid
+
+
     MazeMapper::DrawFloor();
     MazeMapper* Mapper = new MazeMapper();
+    //  Mapper->Game = Game1;
     Mapper->DrawWalls();
 }
  
@@ -173,12 +229,9 @@ void MazeMapper::SetLights(void)
 
 int main(int argc, char *argv[])
 {
-    std::cout<<"Generate a new Grid\n";
-    Grid Game1 = Grid(M);     // Function for making new grid
-
     //  Create a MazeMapper
     std::cout << "Generate new MazeMapper\n";
-    MazeMapper* Mapper = new MazeMapper();
+    //  MazeMapper* Mapper = new MazeMapper();
     //  Mapper->DrawFloor();
     //  Mapper->SetLights();
 
@@ -188,6 +241,9 @@ int main(int argc, char *argv[])
     std::cout << "glutInit and window\n";
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);
+    //  Set Window size, position, and create with label
+    glutInitWindowSize(900, 900);
+    //  glutInitWindowPosition(0, 0);
     glutCreateWindow("Maze 98");
 
     glutDisplayFunc(MazeMapper::DrawMaze);

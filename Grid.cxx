@@ -106,13 +106,14 @@ void Grid::PrintMaze()
 Grid::Grid()
 {
 	// Construct 20X20 array of tiles, +1 for null operator \0
-	this->Tiles = new Tile[(20*20)+1];
+	this->Tiles = new Tile[(M*M)+1];
 	// Initialize tiles to false
-	for (int i = 0; i <= 20*20; i++)
+	for (int i = 0; i <= M*M; i++)
 	{
 		this->Tiles[i] = Tile();
 
 	}
+        this->Boundaries(M);
 }
 
 Grid::Grid(int N)
@@ -146,8 +147,8 @@ void Grid::Boundaries(int N)
 		Tiles[i].Walls[0] = true;
 	    }
 	}
-	//this->PrintMaze();	
-//	this->genMaze();
+	this->PrintMaze();	
+	this->genMaze();
 }
 int Grid::Up(int Pos) 		//Returns M*M if impossible or array pos result of move
 {
@@ -279,6 +280,7 @@ void Grid::genMaze()
 //			if(this->Blocked(j)==false) std::cout << " " << j;	
 		} //std::cout << " So far \n";
 	}
+	this->PrintMaze();	
 }
 
 /*
