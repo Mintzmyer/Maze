@@ -84,9 +84,9 @@ void MazeMapper::DrawWalls(void)
     {
         if (Game.Tiles[i].Walls[1])
         {
-            std::cout << "Making " << i << "th 1st wall\n";
+            std::cout << "Making " << i << "th west wall\n";
             glBegin(GL_QUADS);
-            glColor3f(0.698, 0.133, 0.133);
+            glColor3f(0.678, 1.000, 0.184);
             glTexCoord2f(0,1);
             glVertex3f(((i%M)-10)+0.05, ((i/M)-10), -20);
             glTexCoord2f(0,0);
@@ -99,9 +99,9 @@ void MazeMapper::DrawWalls(void)
         }
         if (Game.Tiles[i].Walls[2])
         {
-            std::cout << "Making " << i << "th 2nd wall\n";
+            std::cout << "Making " << i << "th north wall\n";
             glBegin(GL_QUADS);
-            glColor3f(0.698, 0.133, 0.133);
+            glColor3f(0.678, 1.000, 0.184);
             glTexCoord2f(0,0);
             glVertex3f(((i%M)-10), ((i/M)-9)-0.05, -20);
             glTexCoord2f(1,0);
@@ -113,39 +113,37 @@ void MazeMapper::DrawWalls(void)
             glEnd();
 
         }
-/*
         if (Game.Tiles[i].Walls[3])
         {
-            std::cout << "Making " << i << "th 3rd wall\n";
+            std::cout << "Making " << i << "th east wall\n";
             glBegin(GL_QUADS);
-            glColor3f(0.698, 0.133, 0.133);
+            glColor3f(0.678, 1.000, 0.184);
             glTexCoord2f(1,0);
-            glVertex3f((((i%M)+1)*10)-0.05, ((i/M)+1)*10, -20);
+            glVertex3f(((i%M)-9)-0.05, (i/M)-9, -20);
             glTexCoord2f(1,1);
-            glVertex3f((((i%M)+1)*10)-0.05, ((i/M))*10, -20);
+            glVertex3f(((i%M)-9)-0.05, ((i/M))-10, -20);
             glTexCoord2f(0,1);
-            glVertex3f((((i%M)+1)*10)-0.05, ((i/M))*10, -10);
+            glVertex3f(((i%M)-9)-0.05, ((i/M))-10, -19);
             glTexCoord2f(0,0);
-            glVertex3f((((i%M)+1)*10)-0.05, ((i/M)+1)*10, -10);
+            glVertex3f(((i%M)-9)-0.05, (i/M)-9, -19);
             glEnd();
 
         }
         if (Game.Tiles[i].Walls[4])
         {
-            std::cout << "Making " << i << "th 4th wall\n";
+            std::cout << "Making " << i << "th south wall\n";
             glBegin(GL_QUADS);
-            glColor3f(0.698, 0.133, 0.133);
+            glColor3f(0.678, 1.000, 0.184);
             glTexCoord2f(1,1);
-            glVertex3f((((i%M)+1)*10)-0.05, (((i/M))*10)+0.05, -20);
+            glVertex3f(((i%M)-9), (((i/M))-10)+0.05, -20);
             glTexCoord2f(1,0);
-            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, -20);
+            glVertex3f(((i%M)-10), ((i/M)-10)+0.05, -20);
             glTexCoord2f(0,0);
-            glVertex3f(((i%M)*10)+0.05, ((i/M)*10)+0.05, -10);
+            glVertex3f(((i%M)-10), ((i/M)-10)+0.05, -19);
             glTexCoord2f(0,1);
-            glVertex3f((((i%M)+1)*10)-0.05, (((i/M))*10)+0.05, -10);
+            glVertex3f(((i%M)-9), (((i/M))-10)+0.05, -19);
             glEnd();
         }
-*/
 /*
         glBegin(GL_QUADS);
         glColor3f(0.722, 0.525, 0.043);
